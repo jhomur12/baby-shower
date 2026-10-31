@@ -140,8 +140,8 @@ footer{padding:30px 20px 50px;color:var(--soft);font-size:.8rem}
 /* ====== EDITA AQUÍ TUS DATOS ====== */
 var CFG = {
   babyName: "Diosito",
-  song: "",
-  youtube: "LakJahiBl2Y",
+  song: "cancion.mp3",
+  youtube: "",
   parents: "Jhon & Laura",
   date: "2026-11-22T16:00:00",
   place: "Conjunto Residencial Belaterra Aréia, Cali",
@@ -266,14 +266,19 @@ if(location.hash==="#maqueta"){
 }
 (function(){var b=$("bears"),s="";for(var i=0;i<18;i++){var l=Math.random()*92,t=Math.random()*92,z=1.4+Math.random()*2.2,d=6+Math.random()*6,dl=-Math.random()*8;s+='<span style="left:'+l+'%;top:'+t+'%;font-size:'+z+'rem;animation-duration:'+d+'s;animation-delay:'+dl+'s">🧸</span>';}b.innerHTML=s;})();
 $("env").addEventListener("click", function(){
-  startYt();
-  if(song.getAttribute("src")){song.play().catch(function(){});}
   this.classList.add("open");
   setTimeout(function(){
     $("cover").style.display="none";
     $("inv").style.display="block";
     window.scrollTo(0,0);
   },700);
+  try{ startYt(); }catch(e){}
+  try{
+    if(song.getAttribute("src")){
+      var pr=song.play();
+      if(pr&&pr.catch){pr.catch(function(){});}
+    }
+  }catch(e){}
 });
 </script>
 </body>
